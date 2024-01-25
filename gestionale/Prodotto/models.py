@@ -6,3 +6,8 @@ class Prodotto(models.Model):
     produttore = models.CharField(max_length=255, blank=True)
     soglia_riordino = models.IntegerField(default=-1)
     categoria = models.CharField(max_length=255, blank=True)
+
+    @staticmethod
+    def getDistinctCategorieListLabel():
+        categorie = Prodotto.objects.values('categoria').distinct()
+        return [categoria['categoria'] for categoria in categorie]
