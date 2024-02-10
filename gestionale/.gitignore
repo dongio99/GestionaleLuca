@@ -1,43 +1,24 @@
-# Byte-compiled / optimized / DLL files
+# Ignore Python bytecode files
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
 
-# Virtual environment
-venv/
-env/
-
-# Local development settings
+# Ignore database files
 *.sqlite3
-*.db
 
-# Media files
-media/
+# Ignore migrations folder for Django apps
+**/migrations/
 
-# Static files
-staticfiles/
+# Ignore static files collected by Django
+**/static/
 
-# Log files
-*.log
+# Ignore media files uploaded by users
+**/media/
 
-# Ignore the .vscode folder
-.vscode/
+# Ignore environment-specific settings
+.env
 
-# Ignore the .idea folder
-.idea/
-
-# Ignore the __pycache__ folders
-__pycache__/
-
-# Ignore macOS system files
+# Ignore system files
 .DS_Store
 
-# Ignore compiled Python files
-*.pyc
-
-# Ignore Python cache folders
-__pycache__/
-
-# Ignore environment configuration files
-.env
+# Ignore IDE settings
+.idea/
+.vscode/
