@@ -1,5 +1,26 @@
 {% extends "layouts/base.html" %}
 {% block content %}
-    <h1>Prodotti</h1>
-
+    <div class="container-fluid">    
+        <h1>Prodotti</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <th>Codice</th>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for prodotto in prodotti %}
+                    <tr>
+                        <td>{{ prodotto.codice }}</td>
+                        <td>{{ prodotto.nome }}</td>
+                        <td>{{ prodotto.id_categoria.nome }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
