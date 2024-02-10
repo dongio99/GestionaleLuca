@@ -12,3 +12,8 @@ class Fornitore(models.Model):
                                   blank=True, 
                                   choices=Pagamento.get_mod_pagamento(),
                                   verbose_name = 'Metodi pagamento possibili')
+
+    @staticmethod
+    def getChoices():
+        return ((f.ragione_sociale, f.ragione_sociale) for f in Fornitore.objects.all())
+    
