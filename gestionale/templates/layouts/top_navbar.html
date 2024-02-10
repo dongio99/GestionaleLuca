@@ -1,7 +1,8 @@
-<nav class="navbar navbar-expand-lg sticky-top bg-secondary mb-3" data-bs-theme="dark">
+{% load static %}
+<nav class="navbar navbar-expand-lg sticky-top bg-secondary mb-3 pt-0 pb-0" data-bs-theme="dark">
     <ul class="nav align-items-center">
         <li>
-            <a class="navbar-brand text-warning p-3">RoccoIlTuttofare</a>
+            <img src="{% static 'files/logo.png' %}" alt="Logo">
         </li>
         <li>
             <a class="nav-link text-white" href="{% url 'dashboard' %}">
