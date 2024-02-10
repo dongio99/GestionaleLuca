@@ -1,7 +1,8 @@
 from django.db import models
 
+
 class Pagamento(models.Model):
-    descrizione = models.CharField(max_length = 255)
+    descrizione = models.CharField(max_length=255)
 
     @staticmethod
     def get_mod_pagamento():

@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from Magazzino.models import Magazzino
 from gestionale import Prodotto
 
+
 @receiver(pre_delete, sender=Prodotto)
 def prevent_deletion(sender, instance, **kwargs):
     if Magazzino.objects.filter(prodotto=instance).exists():
