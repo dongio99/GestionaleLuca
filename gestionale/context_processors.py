@@ -1,5 +1,5 @@
-from Prodotto.models import Prodotto 
+from Prodotto.models import Categoria 
 
 def categorie_prodotti(request):
-    categorie = Prodotto.getDistinctCategorieListLabel()
+    categorie = Categoria.getDistinctLabel()
     return {'categorie_prodotti': categorie}

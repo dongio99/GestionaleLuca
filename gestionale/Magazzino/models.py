@@ -1,12 +1,16 @@
 from django.db import models
 from django.forms import ValidationError
 from Prodotto.models import Prodotto
-
-def validate_positive(value):
-    if value <= 0:
-        raise ValidationError("La quantità deve essere maggiore di zero.")
-
+from django.core.validators import MinValueValidator
 
 class Magazzino(models.Model):
     prodotto = models.ForeignKey(Prodotto, on_delete=models.CASCADE)
-    quantita = models.IntegerField(validators=[validate_positive])
+    quantita = models.IntegerField(validators=[MinValueValidator(0)])
+
+    def createGiacenza(id_prodotto):
+        Magazzino.objects.create(prodotto=id_prodotto, quantita=0)
+
+    #def updateQnt(quantita, movimento):
+    #    gicenza = new Magazzino()
+    
+        
