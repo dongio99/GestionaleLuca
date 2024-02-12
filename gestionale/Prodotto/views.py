@@ -27,7 +27,7 @@ class ProdottiView(View):
             query &= Q(id_categoria__nome__icontains=search_cat)
         
         prodotti = prodotti.filter(query)
-        print(prodotti.query)    
+        prodotti = prodotti.distinct()
 
         context = {"prodotti": prodotti}
         
