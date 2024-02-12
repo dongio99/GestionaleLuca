@@ -22,7 +22,9 @@
                         </th>
                     </tr>
                 </thead>
-                    {% include table_content.html %}
+                <tbody id="table-body">
+                    {% include "table_content.html" %}
+                </tbody>
             </table>
         </div>
     </div>
@@ -47,7 +49,7 @@
                         'search_cat': search_cat,
                     },
                     success: function(data) {
-                        $('#table-body').html(data);
+                        $('#table-body').html(data.my_content);
                     }
                 });
             }

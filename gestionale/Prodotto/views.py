@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 
 class ProdottiView(View):
     template_name = "index.html"
+    template_name_table = "table_content.html"
 
     def get(self, request, codice_cat=None, *args, **kwargs):
         search_codice = request.GET.get('search_codice')
@@ -31,8 +32,9 @@ class ProdottiView(View):
         context = {"prodotti": prodotti}
         
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            # Costruisci una lista di dizionari per i dati dei prodotti
-            data = [{'codice': prodotto.codice, 'nome': prodotto.nome, 'categoria': prodotto.id_categoria.all()} for prodotto in prodotti]
-            return JsonResponse({'data': data})
+            data = dict()
+            context = {"prodotti": prodotti}
+            data['my_content'] = render_to_string("table_content.html", context, request=request)
+            return JsonResponse(data)
         else:
             return render(request, self.template_name, context)
