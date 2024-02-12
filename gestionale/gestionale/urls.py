@@ -18,13 +18,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Prodotto.views import ProdottiView
+from Magazzino.views import MagazzinoView
 from .views import DashboardView
 
 urlpatterns = [
     path("prodotti/", ProdottiView.as_view(), name="prodotti_tutti"),
+    path("prodotti/", ProdottiView.as_view(), name="update_table"),
     path(
         "prodotti/<str:codice_cat>/", ProdottiView.as_view(), name="prodotti_categoria"
     ),
     path("dashboard/", DashboardView.as_view(), name="dashboard"),
+    path("magazzino/", MagazzinoView.as_view(), name="magazzino"),
     path("admin/", admin.site.urls),
 ]
