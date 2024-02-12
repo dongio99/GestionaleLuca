@@ -10,20 +10,23 @@ class ProdottiView(View):
     template_name_table = "table_content.html"
 
     def get(self, request, codice_cat=None, *args, **kwargs):
+        codice_cat_get = request.GET.get('codice_cat_get')
+        if codice_cat == None:
+            codice_cat = codice_cat_get
         search_codice = request.GET.get('search_codice')
         search_nome = request.GET.get('search_nome')
         search_cat = request.GET.get('search_cat')
         query = Q()
         prodotti = Prodotto.objects.all()
 
-        if codice_cat:
+        if codice_cat :
             cat = Categoria.objects.get(nome=codice_cat)
             query &= Q(id_categoria=cat.id)
-        elif search_codice:
+        if search_codice:
             query &= Q(codice__icontains=search_codice)
-        elif search_nome:
+        if search_nome:
             query &= Q(nome__icontains=search_nome)
-        elif search_cat:
+        if search_cat:
             query &= Q(id_categoria__nome__icontains=search_cat)
         
         prodotti = prodotti.filter(query)

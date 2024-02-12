@@ -39,7 +39,10 @@
                 var search_codice = $('#search_codice').val();
                 var search_nome = $('#search_nome').val();
                 var search_cat = $('#search_cat').val();
-
+                var pathSegments = window.location.pathname.split('/');
+                var codice_cat_index = pathSegments.indexOf("prodotti") + 1; // Trova l'indice di "prodotti" e aggiungi 1
+                var codice_cat = decodeURIComponent(pathSegments[codice_cat_index]);
+                
                 $.ajax({
                     url: '{% url 'update_table' %}',
                     type: 'GET',
@@ -47,6 +50,7 @@
                         'search_codice': search_codice,
                         'search_nome': search_nome,
                         'search_cat': search_cat,
+                        'codice_cat_get': codice_cat,
                     },
                     success: function(data) {
                         $('#table-body').html(data.my_content);
