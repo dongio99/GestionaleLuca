@@ -1,24 +1,15 @@
-# Ignore Python bytecode files
-__pycache__/
-
-# Ignore database files
-*.sqlite3
-
-# Ignore migrations folder for Django apps
-**/migrations/
-
-# Ignore static files collected by Django
-**/static/
-
-# Ignore media files uploaded by users
-**/media/
-
-# Ignore environment-specific settings
-.env
-
-# Ignore system files
-.DS_Store
-
-# Ignore IDE settings
-.idea/
-.vscode/
+__pycache__/*
+Fornitore/__pycache__
+Prodotto/__pycache__/*
+Pagamento/__pycache__/*
+Iva/__pycache__/*
+Magazzino/__pycache__/*
+Movimenti/__pycache__/*
+gestionale/__pycache__/*
+Prodotto/migrations/*
+Fornitore/migrations/*
+Pagamento/migrations/*
+Iva/migrations/*
+Magazzino/migrations/*
+Movimenti/migrations/*
+staticfiles/*
