@@ -2,7 +2,6 @@ from django.db import models
 
 from django.forms import ModelChoiceField
 
-
 class Categoria(models.Model):
     nome = models.CharField(max_length=255, unique=True)
 
@@ -16,7 +15,6 @@ class Categoria(models.Model):
         return [categoria["nome"] for categoria in categorie]
 
     def delete(self, *args, **kwargs):
-        # Aggiorna i prodotti associati a questa categoria si resetta
         prodotti = Prodotto.objects.filter(id_categoria=self.id)
         for prodotto in prodotti:
             prodotto.id_categoria = None

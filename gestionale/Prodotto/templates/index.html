@@ -10,17 +10,47 @@
                         <th>Nome</th>
                         <th>Categoria</th>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for prodotto in prodotti %}
                     <tr>
-                        <td>{{ prodotto.codice }}</td>
-                        <td>{{ prodotto.nome }}</td>
-                        <td>{{ prodotto.id_categoria.nome }}</td>
+                        <th>
+                            <input type="text" id="search_codice" name="search_codice" class="form-control" placeholder="Cerca per codice">
+                        </th>
+                        <th>
+                            <input type="text" id="search_nome" name="search_nome" class="form-control" placeholder="Cerca per nome">
+                        </th>
+                        <th>
+                            <input type="text" id="search_cat" name="search_cat" class="form-control" placeholder="Cerca per categoria">
+                        </th>
                     </tr>
-                    {% endfor %}
-                </tbody>
+                </thead>
+                    {% include table_content.html %}
             </table>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#search_codice, #search_nome, #search_cat').on('input', function() {
+                updateTable();
+            });
+
+            function updateTable() {
+                var search_codice = $('#search_codice').val();
+                var search_nome = $('#search_nome').val();
+                var search_cat = $('#search_cat').val();
+
+                $.ajax({
+                    url: '{% url 'update_table' %}',
+                    type: 'GET',
+                    data: {
+                        'search_codice': search_codice,
+                        'search_nome': search_nome,
+                        'search_cat': search_cat,
+                    },
+                    success: function(data) {
+                        $('#table-body').html(data);
+                    }
+                });
+            }
+        });
+    </script>
 {% endblock %}
