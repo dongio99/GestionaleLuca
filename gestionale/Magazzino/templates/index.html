@@ -1,0 +1,26 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+    <div class="container-fluid">    
+        <h1>Prodotti</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <th>prodotto</th>
+                        <th>Nome</th>
+                        <th>Quantità</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for prodotto in prodotti %}
+                    <tr>
+                        <td>{{ giacenza.prodotto.codice }}</td>
+                        <td>{{ giacenza.prodotto.nome }}</td>
+                        <td>{{ giacenza.quantita }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
