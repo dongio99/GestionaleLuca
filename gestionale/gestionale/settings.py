@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "Prodotto",
     "Fornitore",
     "Magazzino",
-    #"Negozio",
+    "Negozio",
     "Movimenti",
 ]
 
@@ -133,7 +133,7 @@ STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    "/static/files",
+    "static/files",
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
