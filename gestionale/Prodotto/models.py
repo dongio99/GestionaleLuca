@@ -2,6 +2,7 @@ from django.db import models
 
 from django.forms import ModelChoiceField
 
+
 class Categoria(models.Model):
     nome = models.CharField(max_length=255, unique=True)
 
@@ -32,6 +33,9 @@ class Prodotto(models.Model):
     produttore = models.CharField(max_length=255, blank=True)
     soglia_riordino = models.IntegerField(default=-1)
     id_categoria = models.ManyToManyField(Categoria, default=None)
+
+    class Meta:
+        ordering = ["-codice"]
 
     def __str__(self):
         return self.nome + " - " + self.codice
