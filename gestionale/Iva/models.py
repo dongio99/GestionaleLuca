@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -10,8 +11,8 @@ class Iva(models.Model):
     )
 
     def __str__(self) -> str:
-        return self.percentuale
+        return str(self.percentuale)
 
     @staticmethod
-    def getChoices():
+    def getChoices() -> list[tuple[Decimal, str]]:
         return [(iva.percentuale, f"{iva.percentuale}%") for iva in Iva.objects.all()]
