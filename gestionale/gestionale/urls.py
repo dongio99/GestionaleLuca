@@ -16,10 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.views.generic.base import RedirectView
 from django.urls import path
 from Prodotto.views import ProdottiView
 from Magazzino.views import MagazzinoView
-from .views import DashboardView
+from .views import DashboardView, dati_grafico_view
 
 urlpatterns = [
     path("prodotti/", ProdottiView.as_view(), name="prodotti_tutti"),
@@ -28,6 +29,8 @@ urlpatterns = [
         "prodotti/<str:codice_cat>/", ProdottiView.as_view(), name="prodotti_categoria"
     ),
     path("dashboard/", DashboardView.as_view(), name="dashboard"),
+    path("", RedirectView.as_view(url="/dashboard/"), name="index"),
+    path("dati_grafico/", dati_grafico_view, name="dati_grafico"),
     path("magazzino/", MagazzinoView.as_view(), name="magazzino"),
     path("admin/", admin.site.urls),
 ]

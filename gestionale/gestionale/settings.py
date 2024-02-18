@@ -38,11 +38,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "Pagamento",
     "Iva",
     "Prodotto",
     "Fornitore",
     "Magazzino",
+    #"Negozio",
     "Movimenti",
 ]
 
@@ -69,7 +69,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'django.template.context_processors.static',
+                "django.template.context_processors.static",
                 "context_processors.categorie_prodotti",
             ],
         },
@@ -90,6 +90,7 @@ DATABASES = {
         "PASSWORD": "root",
         "HOST": "localhost",
         "PORT": "3306",
+        "OPTIONS": {"sql_mode": "STRICT_TRANS_TABLES"},
     }
 }
 
@@ -135,7 +136,7 @@ STATICFILES_DIRS = [
     "/static/files",
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 
 # Default primary key field type
