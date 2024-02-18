@@ -1,14 +1,14 @@
 from datetime import datetime
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.db.models import Sum
+from django.db.models import Sum, F
 from Prodotto.models import Prodotto, Categoria
 from Movimenti.models import Acquisto, Vendita
 from django.utils.formats import date_format
 
 import json
 
-# from Negozio.models import Negozio
+from Negozio.models import Negozio
 from django.views import View
 
 
@@ -52,5 +52,12 @@ class DashboardView(View):
     template_name = "dashboard.html"
 
     def get(self, request, *args, **kwargs):
-        context = {"anno": datetime.now().year}
+        prodotti = (
+            Prodotto.objects.filter(soglia_riordino__gt=-1)
+            .annotate(
+                total_quantita=Sum("negozio__quantita") + Sum("magazzino__quantita")
+            )
+            .filter(total_quantita__lt=F("soglia_riordino"))
+        )
+        context = {"anno": datetime.now().year, "prodotti": prodotti}
         return render(request, self.template_name, context)

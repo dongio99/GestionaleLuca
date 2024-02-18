@@ -1,4 +1,4 @@
-from datetime import datetime
+from django.utils import timezone
 from decimal import Decimal
 from django.db import models
 from Prodotto.models import Prodotto
@@ -21,7 +21,7 @@ class Movimento(models.Model):
     prezzo_finale = models.DecimalField(
         max_digits=10, decimal_places=2, editable=False, default=0.00
     )
-    data = models.DateTimeField(default=datetime.now())
+    data = models.DateTimeField(default=timezone.now)
 
     def save(self, *args, **kwargs):
         self.prezzo_unitario = ((1 + self.iva) / 100) * self.imponibile_unitario
