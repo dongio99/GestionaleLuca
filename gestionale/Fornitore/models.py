@@ -1,5 +1,11 @@
 from django.db import models
-from Pagamento.models import Pagamento
+
+
+class Pagamento(models.Model):
+    descrizione = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.descrizione
 
 
 class Fornitore(models.Model):
@@ -12,10 +18,12 @@ class Fornitore(models.Model):
     pagamento = models.ManyToManyField(
         Pagamento,
         blank=True,
-        choices=Pagamento.get_mod_pagamento(),
         verbose_name="Metodi pagamento possibili",
     )
 
+    def __str__(self):
+        return self.ragione_sociale
+
     @staticmethod
     def getChoices():
-        return ((f.ragione_sociale, f.ragione_sociale) for f in Fornitore.objects.all())
+        return [(f.ragione_sociale, f.ragione_sociale) for f in Fornitore.objects.all()]
