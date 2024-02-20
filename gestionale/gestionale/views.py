@@ -49,7 +49,7 @@ def get_dati_movimenti(tipo_movimento):
 
 
 class DashboardView(View):
-    template_name = "dashboard.html"
+    template_name = "Dashboard/dashboard.html"
 
     def get(self, request, *args, **kwargs):
         prodotti = (

@@ -7,8 +7,8 @@ from django.template.loader import render_to_string
 
 
 class ProdottiView(View):
-    template_name = "prodotto/index.html"
-    template_name_table = "prodotto/table_content.html"
+    template_name = "Prodotto/index.html"
+    template_name_table = "Prodotto/table_content.html"
 
     def get(self, request, codice_cat=None, *args, **kwargs):
         codice_cat_get = request.GET.get("codice_cat_get")

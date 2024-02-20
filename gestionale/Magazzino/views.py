@@ -4,7 +4,7 @@ from .models import Magazzino
 
 
 class MagazzinoView(View):
-    template_name = "magazzino/index.html"
+    template_name = "Magazzino/index.html"
 
     def get(self, request, *args, **kwargs):
         prodotti = Magazzino.objects.filter(quantita__gt=0)
