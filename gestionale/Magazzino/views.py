@@ -4,9 +4,9 @@ from .models import Magazzino
 
 
 class MagazzinoView(View):
-    template_name = "index.html"
+    template_name = "magazzino/index.html"
 
     def get(self, request, *args, **kwargs):
         prodotti = Magazzino.objects.filter(quantita__gt=0)
-        context = {"giacenza": prodotti}
+        context = {"giacenze": prodotti}
         return render(request, self.template_name, context)

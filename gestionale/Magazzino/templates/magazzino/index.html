@@ -1,0 +1,61 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+    <div class="container-fluid">    
+        <h1>Magazzino</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <th class="text-center">Codice Prodotto</th>
+                        <th class="text-center">Nome Prodotto</th>
+                        <th class="text-center"><a class="text-white"href="">Quantità</a></th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input type="text" id="search_cod_prodotto" name="search_cod_prodotto" class="form-control" placeholder="Cerca per codice">
+                        </th>
+                        <th>
+                            <input type="text" id="search_nome_prodotto" name="search_nome_prodotto" class="form-control" placeholder="Cerca per nome">
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    {% include "table_content.html" %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#search_cod_prodotto, #search_nome_prodotto').on('input', function() {
+                updateTable();
+            });
+
+            function updateTable() {
+                var search_codice = $('#search_codice').val();
+                var search_nome = $('#search_nome').val();
+                var search_cat = $('#search_cat').val();
+                var pathSegments = window.location.pathname.split('/');
+                var codice_cat_index = pathSegments.indexOf("prodotti") + 1; // Trova l'indice di "prodotti" e aggiungi 1
+                var codice_cat = decodeURIComponent(pathSegments[codice_cat_index]);
+                
+                $.ajax({
+                    url: '{% url 'update_table' %}',
+                    type: 'GET',
+                    data: {
+                        'search_codice': search_codice,
+                        'search_nome': search_nome,
+                        'search_cat': search_cat,
+                        'codice_cat_get': codice_cat,
+                    },
+                    success: function(data) {
+                        $('#table-body').html(data.my_content);
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}
