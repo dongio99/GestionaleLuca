@@ -1,3 +1,11 @@
+<style>
+    select.form-control {
+        appearance: auto;
+        -webkit-appearance: auto;
+        -moz-appearance: auto;
+    }
+</style>
+
 {% extends "layouts/base.html" %}
 {% block content %}
     <div class="container-fluid">    
@@ -18,7 +26,18 @@
                             <input type="text" id="search_nome_prodotto" name="search_nome_prodotto" class="form-control" placeholder="Cerca per nome">
                         </th>
                         <th>
-                            
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <select name="operator" id="operator" class="form-control">
+                                        <option value="gt">&gt;</option>
+                                        <option value="lt">&lt;</option>
+                                        <option value="=">=</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="number" id="search_qnt" name="search_qnt" class="form-control" placeholder="Inserisci valore">
+                                </div>
+                            </div>
                         </th>
                     </tr>
                 </thead>
@@ -31,26 +50,24 @@
 
     <script>
         $(document).ready(function() {
-            $('#search_cod_prodotto, #search_nome_prodotto').on('input', function() {
+            $('#search_cod_prodotto, #search_nome_prodotto, #search_qnt').on('input', function() {
                 updateTable();
             });
-
+        
             function updateTable() {
-                var search_codice = $('#search_codice').val();
-                var search_nome = $('#search_nome').val();
-                var search_cat = $('#search_cat').val();
-                var pathSegments = window.location.pathname.split('/');
-                var codice_cat_index = pathSegments.indexOf("prodotti") + 1; // Trova l'indice di "prodotti" e aggiungi 1
-                var codice_cat = decodeURIComponent(pathSegments[codice_cat_index]);
+                var search_codice = $('#search_cod_prodotto').val();
+                var search_nome = $('#search_nome_prodotto').val();
+                var search_qnt = $('#search_qnt').val();
+                var operator_qnt = $('#operator').val();
                 
                 $.ajax({
-                    url: '{% url 'update_table' %}',
+                    url: '{% url 'update_table_magazzino' %}',
                     type: 'GET',
                     data: {
                         'search_codice': search_codice,
                         'search_nome': search_nome,
-                        'search_cat': search_cat,
-                        'codice_cat_get': codice_cat,
+                        'search_qnt': search_qnt,
+                        'operator': operator_qnt,
                     },
                     success: function(data) {
                         $('#table-body').html(data.my_content);

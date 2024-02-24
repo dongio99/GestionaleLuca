@@ -24,7 +24,7 @@ from .views import DashboardView, dati_grafico_view
 
 urlpatterns = [
     path("prodotti/", ProdottiView.as_view(), name="prodotti_tutti"),
-    path("prodotti/", ProdottiView.as_view(), name="update_table"),
+    path("prodotti/", ProdottiView.as_view(), name="update_table_prodotti"),
     path(
         "prodotti/<str:codice_cat>/", ProdottiView.as_view(), name="prodotti_categoria"
     ),
@@ -32,5 +32,6 @@ urlpatterns = [
     path("", RedirectView.as_view(url="/dashboard/"), name="index"),
     path("dati_grafico/", dati_grafico_view, name="dati_grafico"),
     path("magazzino/", MagazzinoView.as_view(), name="magazzino"),
+    path("magazzino/", MagazzinoView.as_view(), name="update_table_magazzino"),
     path("admin/", admin.site.urls),
 ]
