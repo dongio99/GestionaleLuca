@@ -39,7 +39,7 @@ class ProdottiView(View):
             data = dict()
             context = {"prodotti": prodotti}
             data["my_content"] = render_to_string(
-                "table_content.html", context, request=request
+                "Prodotto/table_content.html", context, request=request
             )
             return JsonResponse(data)
         else:
