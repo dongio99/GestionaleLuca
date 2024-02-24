@@ -44,7 +44,7 @@
                 var codice_cat = decodeURIComponent(pathSegments[codice_cat_index]);
                 
                 $.ajax({
-                    url: '{% url 'update_table' %}',
+                    url: '{% url 'update_table_prodotti' %}',
                     type: 'GET',
                     data: {
                         'search_codice': search_codice,

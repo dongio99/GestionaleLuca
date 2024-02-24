@@ -8,7 +8,6 @@ from django.template.loader import render_to_string
 
 class ProdottiView(View):
     template_name = "Prodotto/index.html"
-    template_name_table = "Prodotto/table_content.html"
 
     def get(self, request, codice_cat=None, *args, **kwargs):
         codice_cat_get = request.GET.get("codice_cat_get")
@@ -37,7 +36,6 @@ class ProdottiView(View):
 
         if request.headers.get("x-requested-with") == "XMLHttpRequest":
             data = dict()
-            context = {"prodotti": prodotti}
             data["my_content"] = render_to_string(
                 "Prodotto/table_content.html", context, request=request
             )
