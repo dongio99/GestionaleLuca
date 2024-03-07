@@ -3,7 +3,10 @@ from django.db.models import Q
 from django.http import JsonResponse
 from .models import Prodotto, Categoria
 from django.views import View
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 from django.template.loader import render_to_string
+from django.forms.models import model_to_dict
 
 
 class ProdottiView(View):
@@ -42,3 +45,12 @@ class ProdottiView(View):
             return JsonResponse(data)
         else:
             return render(request, self.template_name, context)
+
+class CreateProduct(CreateView):
+    model = Prodotto
+    fields = ['codice', 'nome', 'produttore', 'soglia_riordino', 'id_categoria']
+
+    def form_valid(self, form):
+        self.object = form.save()
+        prodotto_dict = model_to_dict(self.object)
+        return JsonResponse(prodotto_dict)
