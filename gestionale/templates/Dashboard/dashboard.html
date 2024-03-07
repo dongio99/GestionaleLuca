@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+
+<div class="container-fluid">  
+    <div class="row title mb-3">
+        <div class="col-md-12">
+            <h1 class="text-center">Dashboard</h1>
+        </div>  
+    </div>
+    <div class="row mb-3">
+        {% include "Dashboard/prodotti_ordinare.html"%}
+        {% include "Dashboard/azioni_rapide.html"%}
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        {% include "Dashboard/vendite_graph.html"%}
+    </div>
+</div>
+{% endblock %}
