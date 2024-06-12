@@ -1,4 +1,5 @@
 from decimal import Decimal
+from functools import cached_property
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -13,6 +14,6 @@ class Iva(models.Model):
     def __str__(self) -> str:
         return str(self.percentuale)
 
-    @staticmethod
-    def getChoices() -> list[tuple[Decimal, str]]:
-        return [(iva.percentuale, f"{iva.percentuale}%") for iva in Iva.objects.all()]
+    @classmethod
+    def getChoices(cls) -> list[tuple[Decimal, str]]:
+        return [(iva.percentuale, f"{iva.percentuale}%") for iva in cls.objects.all()]
