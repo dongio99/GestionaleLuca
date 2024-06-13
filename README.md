@@ -11,7 +11,7 @@ Assicurati di avere installato Docker e Docker Compose sul tuo sistema.
 1. Clona il repository del progetto:
 
     ```bash
-    git clone <URL_DEL_REPOSITORY>
+    git clone https://github.com/dongio99/GestionaleLuca.git
     ```
 
 2. Naviga nella directory del progetto:
@@ -28,10 +28,10 @@ Assicurati di avere installato Docker e Docker Compose sul tuo sistema.
 
 4. Apri un nuovo terminale e naviga nella directory del progetto.
 
-5. Esegui il comando `docker-compose exec app php artisan migrate` per eseguire la migrazione delle tabelle:
+5. Esegui il comando `docker-compose exec web python manage.py migrate` per eseguire la migrazione delle tabelle:
 
     ```bash
-    docker-compose exec app python manage.py migrate
+    docker-compose exec web python manage.py migrate
     ```
 
 Ora il progetto è stato inizializzato correttamente e le tabelle sono state migrate.
