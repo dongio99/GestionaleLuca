@@ -50,10 +50,16 @@ class Acquisto(Movimento):
     def save(self, *args, **kwargs):
         self.fornitore_rag_soc = self.id_fornitore.ragione_sociale
         super().save(*args, **kwargs)
+        
+    class Meta:
+        db_table = "acquisti"
 
 
 class Vendita(Movimento):
-    pass
+    
+    class Meta:
+        db_table = "vendite"
+
 
 
 class Trasferimento(Movimento):
@@ -63,6 +69,9 @@ class Trasferimento(Movimento):
     ]
     origine = models.CharField(max_length=20, choices=ORIGINE_CHOICES)
     destinazione = models.CharField(max_length=20, editable=False)
+    prezzo_unitario = 0
+    prezzo_finale = 0
+    iva = 0
 
     def save(self, *args, **kwargs) -> None:
         if self.origine == "MAGAZZINO":
@@ -70,3 +79,6 @@ class Trasferimento(Movimento):
         elif self.origine == "NEGOZIO":
             self.destinazione = "MAGAZZINO"
         super().save(*args, **kwargs)
+        
+    class Meta:
+        db_table = "trasferimenti"

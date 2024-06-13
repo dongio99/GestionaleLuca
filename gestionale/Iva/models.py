@@ -17,3 +17,6 @@ class Iva(models.Model):
     @classmethod
     def getChoices(cls) -> list[tuple[Decimal, str]]:
         return [(iva.percentuale, f"{iva.percentuale}%") for iva in cls.objects.all()]
+    
+    class Meta:
+        db_table = "iva"

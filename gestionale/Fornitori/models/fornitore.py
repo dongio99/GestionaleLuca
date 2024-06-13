@@ -20,3 +20,6 @@ class Fornitore(models.Model):
     @staticmethod
     def getChoices():
         return [(f.ragione_sociale, f.ragione_sociale) for f in Fornitore.objects.all()]
+    
+    class Meta:
+        db_table = "fornitori"

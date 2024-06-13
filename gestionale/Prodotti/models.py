@@ -25,6 +25,9 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nome
+    
+    class Meta:
+        db_table = "prodotti_categorie"
 
 
 class Prodotto(models.Model):
@@ -46,3 +49,6 @@ class Prodotto(models.Model):
 
     def id_categoria_choices(self):
         return ModelChoiceField(queryset=Categoria.objects.all(), required=False)
+    
+    class Meta:
+        db_table = "prodotti"

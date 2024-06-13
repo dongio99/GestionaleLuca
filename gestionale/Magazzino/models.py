@@ -13,3 +13,6 @@ class Magazzino(models.Model):
 
     # def updateQnt(quantita, movimento):
     #    gicenza = new Magazzino()
+
+    class Meta:
+        db_table = "magazzino"
