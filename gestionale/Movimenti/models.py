@@ -17,11 +17,20 @@ class Movimento(models.Model):
     prezzo_unitario = models.DecimalField(
         max_digits=10, decimal_places=2, editable=False, default=0.00
     )
-    iva = models.DecimalField(choices=Iva.getChoices(), max_digits=5, decimal_places=2)
+    iva = models.DecimalField(max_digits=5, decimal_places=2)
+    
+
     prezzo_finale = models.DecimalField(
         max_digits=10, decimal_places=2, editable=False, default=0.00
     )
     data = models.DateTimeField(default=timezone.now)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._set_iva_choices()
+
+    def _set_iva_choices(self):
+        self._meta.get_field('iva').choices = Iva.getChoices()
 
     def save(self, *args, **kwargs):
         self.prezzo_unitario = ((1 + self.iva) / 100) * self.imponibile_unitario
